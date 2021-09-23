@@ -15,6 +15,7 @@ module Tarsnap
       if expired.empty?
         puts "No archives need to be pruned"
       else
+        puts "Expiring archives: #{expired}"
         expired.each { |a| tarsnap.delete(a) }
       end
     end
