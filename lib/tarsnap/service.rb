@@ -30,5 +30,9 @@ module Tarsnap
         system "#{TARSNAP_EXE} -df #{archive.filename}"
       end
     end
+
+    def list_archive(archive)
+      system "#{TARSNAP_EXE} -tf #{archive}"
+    end
   end
 end

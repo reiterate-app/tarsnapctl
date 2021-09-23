@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tarsnap (0.1.0)
+    tarsnap (0.2.0)
       thor
 
 GEM
