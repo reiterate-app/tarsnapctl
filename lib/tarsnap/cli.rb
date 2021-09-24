@@ -18,7 +18,9 @@ module Tarsnap
     option :archive
     def snapshot
       date_format = DateTime.now.strftime("%Y-%m-%d")
-      Service.new(mock: options[:dry_run]).create_new("#{options[:name]}-#{date_format}", options[:archive])
+      name = "#{options[:name]}-#{date_format}"
+      Service.new(mock: options[:dry_run]).create_new(name, options[:archive])
+      puts "Created archive: #{name}.tar"
     end
 
     desc "prune", "Prune old backups"
