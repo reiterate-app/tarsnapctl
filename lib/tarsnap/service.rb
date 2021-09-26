@@ -20,7 +20,7 @@ module Tarsnap
 
     def get_archives(name)
       all_archives = `#{TARSNAP_EXE} --list-archives`
-      all_archives.split.sort.select { |archive| archive.start_with?(name) }.map { |filename| Archive.new(filename) }
+      all_archives.split.sort.select { |archive| archive.include?(name || "") }.map { |filename| Archive.new(filename) }
     end
 
     def delete(archive)

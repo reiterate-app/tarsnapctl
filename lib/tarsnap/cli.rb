@@ -23,7 +23,7 @@ module Tarsnap
       puts "Created archive: #{name}.tar"
     end
 
-    desc "prune", "Prune old backups"
+    desc "prune", "Prune expired backups"
     option :name, required: true
     def prune
       tarsnap = Service.new(mock: options[:dry_run])
@@ -31,7 +31,7 @@ module Tarsnap
     end
 
     desc "list", "List archives"
-    option :name, required: true
+    option :name
     def list
       tarsnap = Service.new(mock: options[:dry_run])
       List.new(tarsnap, options[:name]).run
