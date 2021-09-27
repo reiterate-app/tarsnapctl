@@ -14,7 +14,7 @@ module Tarsnap
       if mock
         puts "Creating new archive #{name}"
       else
-        system "#{TARSNAP_EXE} -cf #{name}.tar @#{archive}" or raise "Error creating tarsnap archive"
+        system "#{TARSNAP_EXE} -cf #{name}.tar @#{archive}" or abort "Error creating tarsnap archive"
       end
     end
 
