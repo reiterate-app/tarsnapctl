@@ -12,12 +12,12 @@ module Tarsnap
 
     def run
       archives = tarsnap.get_archives(name)
-      archives.sort_by! { |a| a.date }
+      archives.sort_by!(&:date)
       archive = if date == :last
-        archives.last
-      else
-        archives.find { |a| a.filename.end_with?("#{date}.tar") } or raise "Archive not found"
-      end
+                  archives.last
+                else
+                  archives.find { |a| a.filename.end_with?("#{date}.tar") } or raise "Archive not found"
+                end
       tarsnap.list_archive(archive)
     end
   end

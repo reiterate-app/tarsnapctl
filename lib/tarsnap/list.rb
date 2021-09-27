@@ -11,7 +11,7 @@ module Tarsnap
 
     def run
       archives = tarsnap.get_archives(name)
-      archives.sort_by! { |a| a.date }
+      archives.sort_by!(&:date)
       puts archives.map(&:filename).join("\n")
     end
   end
