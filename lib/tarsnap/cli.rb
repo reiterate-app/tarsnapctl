@@ -45,6 +45,11 @@ module Tarsnap
       Contents.new(tarsnap, options[:name], options[:date]).run
     end
 
+    desc "version", "Print version and exit"
+    def version
+      puts "#{$PROGRAM_NAME} v#{VERSION}"
+    end
+
     def self.exit_on_failure?
       true
     end
