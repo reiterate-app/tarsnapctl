@@ -21,7 +21,7 @@ module Tarsnap
     end
 
     def weekly_archive?(archive)
-      archive.age > 7 && archive.age < 60
+      archive.age >= 7 && archive.age < 60
     end
 
     def monthly_archive?(archive)
@@ -32,9 +32,9 @@ module Tarsnap
     # and keep only the latest every time_interval
     # return all other 'expired' archives (in time_select, but closer than time_interval)
     def expired(time_select, time_interval)
-      archives.select(&method(time_select))
-              .group_by { |a| [a.date.year, a.date.send(time_interval)] }
+      archives.group_by { |a| [a.date.year, a.date.send(time_interval)] }
               .values.map(&:clip).flatten
+              .select(&method(time_select))
     end
 
     def expired_weeklies
